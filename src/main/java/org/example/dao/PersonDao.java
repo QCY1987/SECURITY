@@ -2,36 +2,51 @@ package org.example.dao;
 
 import org.example.models.User;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class PersonDao {
+@Repository
+public class PersonDao implements PersonDaoInterface {
     private static int PEOPLE_COUNT;
-    private List<User> people;
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    /*private List<User> people;
+    /*
     {
         people=new ArrayList<>();
-        people.add(new User(++PEOPLE_COUNT,"Anton","Ivanov", "IT"));
-        people.add(new User(++PEOPLE_COUNT,"Ser","Iva", "HR"));
-        people.add(new User(++PEOPLE_COUNT,"Ant","Ivanovski", "SALARY"));
-        people.add(new User(++PEOPLE_COUNT,"An","Iv", "IT"));
+        people.add(new User(++PEOPLE_COUNT,"Anton"));
+        people.add(new User(++PEOPLE_COUNT,"Ser"));
+        people.add(new User(++PEOPLE_COUNT,"Ant"));
+        people.add(new User(++PEOPLE_COUNT,"An"));
 
     }
+
+     */
+    @Override
     public List<User> index() {
         return people;
     }
+    @Override
     public User show (int id) {
         return people.stream().filter(user -> user.getId()==id).findAny().orElse(null);
     }
+    @Override
     public void save (User user) {
         user.setId(++PEOPLE_COUNT);
         people.add (user);
     }
+    @Override
     public void update (int id, User updatePerson) {
         User personToBeUpdated=show(id);
         personToBeUpdated.setName(updatePerson.getName());
     }
+    @Override
     public void delete (int id) {
         people.removeIf(p->p.getId()==id);
     }

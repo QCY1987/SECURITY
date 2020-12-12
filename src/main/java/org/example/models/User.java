@@ -1,19 +1,26 @@
 package org.example.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table (name="users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column (name="name")
     private String name;
-    private String surname;
-    private String department;
+
 
     public User() {
     }
 
-    public User(int id, String name, String surname, String department) {
+    public User(int id, String name) {
         this.id = id;
         this.name = name;
-        this.surname = surname;
-        this.department = department;
+
     }
 
     public int getId() {
@@ -32,19 +39,5 @@ public class User {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDeparnment(String department) {
-        this.department = department;
-    }
 }
