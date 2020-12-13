@@ -88,6 +88,12 @@
       <version>5.2.10.RELEASE</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>5.4.13.Final</version>
+      <scope>runtime</scope>
+    </dependency>
 
   </dependencies>
 
