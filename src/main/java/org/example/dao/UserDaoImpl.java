@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-public class PersonDao implements PersonDaoInterface {
+public class UserDaoImpl implements UserDao {
 
 
     @PersistenceContext
@@ -26,10 +26,7 @@ public class PersonDao implements PersonDaoInterface {
     @Override
     @SuppressWarnings("unchecked")
     public User show (int id) {
-        return entityManager
-                .createQuery("select u from User u where u.id =?1", User.class)
-                .setParameter(1, id)
-                .getSingleResult();
+        return (entityManager.find(User.class, id));
     }
 
     @Override
@@ -43,9 +40,7 @@ public class PersonDao implements PersonDaoInterface {
     }
 
    @Override
-    public void delete (int id) {
-        entityManager.remove(show(id));
+    public void delete (User user) {
+        entityManager.remove(entityManager.find(User.class,user.getId()));
     }
-
-
 }
