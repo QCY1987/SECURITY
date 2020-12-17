@@ -23,34 +23,32 @@ public class ServiceDao implements ServiceDaoImpl {
     @Transactional
     public List<User> index() {
 
-        Session session=entityManager.unwrap(Session.class);
-
-        List<User> people=session.createQuery("from users", User.class).getResultList();
-        return people;
+        return personDaoInterface.index();
 
     }
-    /*@Override
+    @Override
     @Transactional
     public User show (int id) {
-        return people.stream().filter(user -> user.getId()==id).findAny().orElse(null);
+        return personDaoInterface.show(id);
     }
+
     @Override
     @Transactional
     public void save (User user) {
-        user.setId(++PEOPLE_COUNT);
-        people.add (user);
+        personDaoInterface.save(user);
     }
+
     @Override
     @Transactional
-    public void update (int id, User updatePerson) {
-        User personToBeUpdated=show(id);
-        personToBeUpdated.setName(updatePerson.getName());
+    public void update (User user) {
+        personDaoInterface.update(user);
     }
+
     @Override
     @Transactional
     public void delete (int id) {
-        people.removeIf(p->p.getId()==id);
+        personDaoInterface.delete(id);
     }
 
-     */
+
 }
