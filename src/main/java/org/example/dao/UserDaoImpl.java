@@ -25,22 +25,28 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public User show (int id) {
+    public User show(int id) {
         return (entityManager.find(User.class, id));
     }
 
     @Override
-    public void save (User user) {
+    public void save(User user) {
         entityManager.persist(user);
     }
 
     @Override
-    public void update (User user) {
+    public void update(User user) {
         entityManager.merge(user);
     }
 
-   @Override
-    public void delete (User user) {
-        entityManager.remove(entityManager.find(User.class,user.getId()));
+    @Override
+    public void delete(User user) {
+        entityManager.remove(entityManager.find(User.class, user.getId()));
+    }
+
+
+    @Override
+    public User showUserByUsername(String username) {
+        return (entityManager.find(User.class, username));
     }
 }

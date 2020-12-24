@@ -28,7 +28,7 @@
         <tr>
             <th>id</th>
             <th>name</th>
-
+            <th>roles</th>
         </tr>
 
         <tr th:each="user: ${index}">
@@ -36,13 +36,31 @@
             <td th:text="${user.getId()}">id</td>
             <td th:text="${user.name}">name</td>
             <td>
-                <a href="#" th:href="@{/JM/edit/{id} (id=${user.id})}">Edit</a>
-                <a href="#" th:href="@{/JM/delete/{id} (id=${user.id})}">Delete</a>
+                <p th:each="userRole: ${user.roles}">
+                    <span th:text="${userRole.getRole()}">role</span>
+                </p>
+                <a href="#" th:href="@{/JM/admin/edit/{id} (id=${user.id})}">Edit</a>
+                <a href="#" th:href="@{/JM/admin/delete/{id} (id=${user.id})}">Delete</a>
 
         </tr>
     </table>
     <br/>
-    <a th:href="@{/JM/add}">Add</a>
+
+    <form action="/JM/admin/add/" method="get">
+        <input type="submit" value="CREATE USER">
+    </form>
+    <br>
+    <form action="/JM/user/" method="get">
+        <input type="submit" value="USER PAGE">
+    </form>
+    <br>
+    <form action="/JM/welcome/" method="get">
+        <input type="submit" value="WELCOME PAGE">
+    </form>
+    <br>
+    <form action="/JM/logout" method="post">
+        <input type="submit" value="Logout">
+    </form>
 </div>
 </body>
 </html>
