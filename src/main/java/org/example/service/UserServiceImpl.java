@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional (readOnly = true)
-    public User show (int id) {
+    public User show (Long id) {
         return (entityManager.find(User.class,id));
     }
 

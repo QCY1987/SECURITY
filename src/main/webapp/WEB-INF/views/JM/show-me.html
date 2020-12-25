@@ -25,7 +25,7 @@
 <div align="center">
     <h3>HELLO, mr  <a th:text="${oneUser.name}">name</a></h3>
     <h3>ABOUT USER</h3>
-    <form th:action="@{/JM/user/{id} (id=*{id})}" th:object="${oneUser}" method="post">
+    <form th:action="@{/users/user/{id} (id=*{id})}" th:object="${oneUser}" method="post">
         <table border="1">
             <tr>
                 <th>name</th>
@@ -45,12 +45,12 @@
         </table>
     </form>
     <br>
-    <form action="/JM/logout" method="post">
+    <form action="/users/logout" method="post">
         <input type="submit" value="Logout">
     </form>
     <br><br>
     <div sec:authorize="hasRole('ROLE_ADMIN')">
-        <form action="/JM/admin" method="get">
+        <form action="/users/admin" method="get">
             <input type="submit" value="ADMIN PAGE">
         </form>
     </div>

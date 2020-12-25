@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public User show(int id) {
+    public User show(Long id) {
         return (entityManager.find(User.class, id));
     }
 

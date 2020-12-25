@@ -7,12 +7,12 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-@Table (name="JM", uniqueConstraints = {@UniqueConstraint(columnNames = "username")})
+@Table (name="users", uniqueConstraints = {@UniqueConstraint(columnNames = "username")})
 
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column (name="name")
     private String name;
@@ -31,7 +31,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(int id, String name, String username, String password, Set<Role> roles) {
+    public User(Long id, String name, String username, String password, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -39,11 +39,11 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -80,7 +80,7 @@ public class User implements UserDetails {
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return roles;
     }
 
     @Override
