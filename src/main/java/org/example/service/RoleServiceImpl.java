@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -19,7 +20,7 @@ public class RoleServiceImpl implements RoleService {
     }
     @Override
     @Transactional
-    public List<Role> listRoles() {
+    public Set<Role> listRoles() {
         return roleDao.listRoles();
     }
 

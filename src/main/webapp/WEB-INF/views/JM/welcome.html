@@ -11,12 +11,12 @@
 </div>
 
 <div align="center">
-    <form action="/users/logout" method="post">
+    <form action="/logout" method="post">
         <input type="submit" value="Logout">
     </form>
     <br><br>
     <div sec:authorize="hasRole('ROLE_ADMIN')">
-        <form action="/users/admin" method="get">
+        <form action="/admin" method="get">
             <input type="submit" value="ADMIN PAGE">
         </form>
     </div>

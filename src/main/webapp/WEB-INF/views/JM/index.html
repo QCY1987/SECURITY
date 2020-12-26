@@ -39,26 +39,26 @@
                 <p th:each="userRole: ${user.roles}">
                     <span th:text="${userRole.getRole()}">role</span>
                 </p>
-                <a href="#" th:href="@{/JM/admin/edit/{id} (id=${user.id})}">Edit</a>
-                <a href="#" th:href="@{/JM/admin/delete/{id} (id=${user.id})}">Delete</a>
+                <a href="#" th:href="@{/admin/edit/{id} (id=${user.id})}">Edit</a>
+                <a href="#" th:href="@{/admin/delete/{id} (id=${user.id})}">Delete</a>
 
         </tr>
     </table>
     <br/>
 
-    <form action="/users/admin/add/" method="get">
+    <form action="/admin/add/" method="get">
         <input type="submit" value="CREATE USER">
     </form>
     <br>
-    <form action="/users/user/" method="get">
+    <form action="/user/" method="get">
         <input type="submit" value="USER PAGE">
     </form>
     <br>
-    <form action="/users/welcome/" method="get">
+    <form action="/welcome/" method="get">
         <input type="submit" value="WELCOME PAGE">
     </form>
     <br>
-    <form action="/users/logout" method="post">
+    <form action="/logout" method="post">
         <input type="submit" value="Logout">
     </form>
 </div>
