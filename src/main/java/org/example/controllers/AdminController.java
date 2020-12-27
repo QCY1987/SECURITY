@@ -36,25 +36,26 @@ public class AdminController {
     @PostMapping("/add")
     public String add(@ModelAttribute("addUser") User user,
                       @RequestParam(value = "newRole", required = false) String[] role) {
+
         user.setRoles(getAddRole(role));
         userService.save(user);
         return "redirect:/admin";
     }
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") long id, Model model) {
-        model.addAttribute("edit", userService.show(id));
+    public String edit(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", userService.show(id));
         model.addAttribute("listRole", roleService.listRoles());
         return "edit";
     }
-    @PostMapping("/edit/{id}")
-    public String update(@ModelAttribute("edit") User user,
+    @PostMapping("/edit")
+    public String update(@ModelAttribute("user") User user,
                          @RequestParam(value = "newRole", required = false) String[] role) {
         user.setRoles(getAddRole(role));
         userService.update(user);
         return "redirect:/admin";
     }
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") long id) {
+    public String delete(@PathVariable("id") Long id) {
         User user=userService.show(id);
         userService.delete(user);
         return "redirect:/admin";

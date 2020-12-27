@@ -8,5 +8,5 @@ import java.util.Set;
 
 public interface RoleService {
     public Role getRoleByName(String name);
-    public Set<Role> listRoles();
+    public List<Role> listRoles();
 }

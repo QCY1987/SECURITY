@@ -39,7 +39,12 @@
                 <p th:each="userRole: ${user.roles}">
                     <span th:text="${userRole.getRole()}">role</span>
                 </p>
-                <a href="#" th:href="@{/admin/edit/{id} (id=${user.id})}">Edit</a>
+                <form th:mehtod="get" th:action="@{/admin/edit/{id}(id=${user.getId()})}">
+                    <input type="submit" value="EDIT">
+                </form>
+
+<!--
+<a href="#" th:href="@{/admin/edit/{id} (id=${user.id})}">Edit</a>-->
                 <a href="#" th:href="@{/admin/delete/{id} (id=${user.id})}">Delete</a>
 
         </tr>

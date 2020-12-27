@@ -5,9 +5,7 @@ import org.example.models.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {
@@ -17,12 +15,14 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public org.example.models.Role getRoleByName (String name) {
-        return (entityManager.find(Role.class, name));
+        return entityManager.createQuery("select role from Role role where role.role=:name", Role.class)
+                .setParameter("name", name)
+                .getSingleResult();
+
     }
-    public Set<Role> listRoles() {
-        Set<Role> roleSet = new HashSet<>();
-        List<Role> roleList = entityManager.createQuery("select role from Role role").getResultList();
-        roleSet.addAll(roleList);
-        return roleSet;
+    @Override
+    public List<Role> listRoles() {
+        Query query = entityManager.createQuery("from Role");
+        return query.getResultList();
     }
 }

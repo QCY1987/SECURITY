@@ -7,5 +7,5 @@ import java.util.Set;
 
 public interface RoleDao {
     public org.example.models.Role getRoleByName (String name);
-    public Set<Role> listRoles();
+    public List<Role> listRoles();
 }
