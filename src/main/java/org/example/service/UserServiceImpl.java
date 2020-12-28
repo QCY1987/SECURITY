@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional
     public void delete (User user) {
-        userDao.delete(user);
+        entityManager.remove(entityManager.find(User.class,user.getId()));
     }
     @Override
     public User showUserByUsername(String username) {
